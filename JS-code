@@ -1,7 +1,7 @@
 const NFTManager = {
     nfts: [],
 
-    //factory function which always return an object i.e. createNFT method
+    //factory function 
     createNFT(name, creator, owner, value, dateMinted) {
         return {
             name,
@@ -82,7 +82,6 @@ const NFTManager = {
         }
     }
 
-
 };
 
 //minted 4 nft 
@@ -92,22 +91,17 @@ NFTManager.mintNFT("Nifty", "Parv", "Chirag", 800, "2023-03-20");
 NFTManager.mintNFT("Digital Art", "Rohit", "David", 900, "2023-02-24");
 
 NFTManager.listNFTs();
-
 console.log('Total Supply: ' + NFTManager.totalSupply);
 
-const foundNFT = NFTManager.find_NFT_ByName("Crypto");  // to search a nft - crypto in the array 
+const foundNFT = NFTManager.find_NFT_ByName("Crypto");  
 console.log('Found NFT:', foundNFT);
 
-// to transfer ownership to a new woner or updating the value of a nft
 NFTManager.transferOwnership("Blockchain", "Anuj");
 NFTManager.updateValue("Nifty", 600);
-
 NFTManager.listNFTs();
 
 NFTManager.removeNFT(1);
 NFTManager.listNFTs();
 
-
 NFTManager.sortNFTsByValue();
 NFTManager.listNFTs();
-
