@@ -41,7 +41,6 @@ const NFTManager = {
         return this.nfts.length;  
     },
 
-    // a mehod to search a nft in the array
     find_NFT_ByName(name) {
         return this.nfts.find(nft => nft.name === name);
     },
@@ -72,7 +71,6 @@ const NFTManager = {
         console.log('NFTs sorted by value.');
     },
 
-    // to remove a nft from the array 
     removeNFT(index) {
         if (index >= 0 && index < this.nfts.length) {
             this.nfts.splice(index, 1);
@@ -81,7 +79,6 @@ const NFTManager = {
             throw new Error("Invalid index");
         }
     }
-
 };
 
 //minted 4 nft 
