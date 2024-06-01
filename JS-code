@@ -1,0 +1,113 @@
+const NFTManager = {
+    nfts: [],
+
+    //factory function which always return an object i.e. createNFT method
+    createNFT(name, creator, owner, value, dateMinted) {
+        return {
+            name,
+            creator,
+            owner,
+            value,
+            dateMinted,
+            start() {
+                console.log(this.name +  " by " +this.creator+" is starting.");  
+            }
+        };
+    },
+
+  // mint nft into the array
+    mintNFT(name, creator, owner, value, dateMinted) {
+        const nft = this.createNFT(name, creator, owner, value, dateMinted);
+        this.nfts.push(nft);
+        console.log('NFT mint '+ name);  
+    },
+
+    listNFTs() {
+        // foreach method iterate over each element of an array
+        this.nfts.forEach((nft, index) => {
+            console.log('\nNFT:\t\t ' + (index + 1));
+            console.log('Name:\t\t ' + nft.name);
+            console.log('Creator:\t ' + nft.creator);
+            console.log('Owner:\t\t ' + nft.owner);
+            console.log('Value:\t\t ' + nft.value);
+            console.log('Date Minted: ' + nft.dateMinted);
+            nft.start();
+            console.log('------------------------------');
+        });
+    },
+
+// Aditional function for more functionality  
+    get totalSupply() {
+        return this.nfts.length;  
+    },
+
+    // a mehod to search a nft in the array
+    find_NFT_ByName(name) {
+        return this.nfts.find(nft => nft.name === name);
+    },
+
+    transferOwnership(name, newOwner) {
+        const nft = this.find_NFT_ByName(name);
+        if (nft) {
+            nft.owner = newOwner;
+            console.log(name +" ownership transferred to "+newOwner+".");
+        } else {
+            console.log(name +" not found.");
+        }
+    },
+
+    updateValue(name, newValue) {
+        const nft = this.find_NFT_ByName(name);
+        if (nft) {
+            nft.value = newValue;
+            console.log(name+" value updated to "+ newValue+".");
+        } else {
+            console.log(name+ " not found.");
+        }
+    },
+
+    // Sort NFTs by value in ascending order
+    sortNFTsByValue() {
+        this.nfts.sort((a, b) => a.value - b.value);
+        console.log('NFTs sorted by value.');
+    },
+
+    // to remove a nft from the array 
+    removeNFT(index) {
+        if (index >= 0 && index < this.nfts.length) {
+            this.nfts.splice(index, 1);
+            console.log("The nft is removed from the array");
+        } else {
+            throw new Error("Invalid index");
+        }
+    }
+
+
+};
+
+//minted 4 nft 
+NFTManager.mintNFT("Blockchain", "Mohit", "Arav", 1500, "2021-05-01");
+NFTManager.mintNFT("Crypto", "Naman", "Bintu", 1000, "2022-04-15");
+NFTManager.mintNFT("Nifty", "Parv", "Chirag", 800, "2023-03-20");
+NFTManager.mintNFT("Digital Art", "Rohit", "David", 900, "2023-02-24");
+
+NFTManager.listNFTs();
+
+console.log('Total Supply: ' + NFTManager.totalSupply);
+
+const foundNFT = NFTManager.find_NFT_ByName("Crypto");  // to search a nft - crypto in the array 
+console.log('Found NFT:', foundNFT);
+
+// to transfer ownership to a new woner or updating the value of a nft
+NFTManager.transferOwnership("Blockchain", "Anuj");
+NFTManager.updateValue("Nifty", 600);
+
+NFTManager.listNFTs();
+
+NFTManager.removeNFT(1);
+NFTManager.listNFTs();
+
+
+NFTManager.sortNFTsByValue();
+NFTManager.listNFTs();
+
