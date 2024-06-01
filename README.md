@@ -1,5 +1,6 @@
 This repository contains a JavaScript code for managing Non-Fungible Tokens (NFTs) through a simple NFT Manager object.
-Functioality of all the meehods:
+Functionality of all the methods:
+              CreateNft: It is factory function means it always return an object.
               Minting: You can mint new NFTs with specified details such as name, creator, owner, value, and date minted.
               Listing: View all the NFTs stored in the manager with their details.
               Total Supply: Check the total number of NFTs currently managed.
